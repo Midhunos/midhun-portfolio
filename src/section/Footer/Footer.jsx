@@ -1,0 +1,12 @@
+import styles from './Footerstyles.module.css';
+
+function Footer() {
+  return (
+   <section id='footer' className={styles.container}>
+    <p>&copy; 2024 Midhun os.<br/>
+    All rights reserved</p>
+   </section>
+  )
+}
+
+export default Footer
