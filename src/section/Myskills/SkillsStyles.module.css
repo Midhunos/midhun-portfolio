@@ -7,11 +7,48 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background-color: var(--btn-color);
+      color: var(--btn-text-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    span:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     }
   
     img {
       width: 20px;
+      transition: transform 0.3s ease;
     }
+
+    .visible img {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    span:hover img {
+      transform: scale(1.2) rotate(5deg);
+      animation: none;
+    }
+  }
+
+  .container.visible {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  [data-theme='dark'] .container span {
+    color: #000;
+  }
+
+  [data-theme='dark'] .container span p {
+    color: #000;
+  }
+
+  [data-theme='dark'] .container span img {
+    filter: brightness(0);
   }
   
   .skillList {
@@ -20,29 +57,142 @@
     align-self: center;
     flex-wrap: wrap;
     row-gap: 40px;
+    column-gap: 20px;
     max-width: 26ch;
+    padding: 20px 0;
+  }
+
+  .container.visible .skillList {
+    animation: fadeInScale 0.8s ease-out;
   }
   
+  .container.visible .skillList:nth-of-type(1) {
+    animation-delay: 0.1s;
+  }
+  
+  .container.visible .skillList:nth-of-type(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .container.visible .skillList:nth-of-type(3) {
+    animation-delay: 0.5s;
+  }
+  
+  .skillList span {
+    opacity: 0;
+  }
+
+  .container.visible .skillList span {
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  .container.visible .skillList:nth-of-type(1) span:nth-child(1) { animation-delay: 0.2s; }
+  .container.visible .skillList:nth-of-type(1) span:nth-child(2) { animation-delay: 0.3s; }
+  .container.visible .skillList:nth-of-type(1) span:nth-child(3) { animation-delay: 0.4s; }
+  .container.visible .skillList:nth-of-type(1) span:nth-child(4) { animation-delay: 0.5s; }
+  
+  .container.visible .skillList:nth-of-type(2) span:nth-child(1) { animation-delay: 0.4s; }
+  .container.visible .skillList:nth-of-type(2) span:nth-child(2) { animation-delay: 0.5s; }
+  .container.visible .skillList:nth-of-type(2) span:nth-child(3) { animation-delay: 0.6s; }
+  .container.visible .skillList:nth-of-type(2) span:nth-child(4) { animation-delay: 0.7s; }
+  
+  .container.visible .skillList:nth-of-type(3) span:nth-child(1) { animation-delay: 0.6s; }
+  .container.visible .skillList:nth-of-type(3) span:nth-child(2) { animation-delay: 0.7s; }
+  .container.visible .skillList:nth-of-type(3) span:nth-child(3) { animation-delay: 0.8s; }
+  .container.visible .skillList:nth-of-type(3) span:nth-child(4) { animation-delay: 0.9s; }
+  
   hr {
-    width: 100px;
+    width: 0;
     height: 1px;
     border: none;
     background-color: var(--text-color);
     margin: 30px auto;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .container.visible hr {
+    animation: expandWidth 1s ease-out forwards;
+  }
+
+  hr:hover {
+    width: 150px;
+    opacity: 0.6;
+    transform: scaleX(1.2);
   }
   
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes expandWidth {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100px;
+      opacity: 0.3;
+    }
+  }
+
   @media (width >= 800px) {
     .skillList {
       max-width: fit-content;
       gap: 30px;
+      column-gap: 25px;
   
       p {
         font-size: 20px;
       }
     }
+
+    .container span {
+      padding: 10px 20px;
+    }
   
     hr {
       width: 300px;
+    }
+
+    hr:hover {
+      width: 400px;
     }
   }
   
