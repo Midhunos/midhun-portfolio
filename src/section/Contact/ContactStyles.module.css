@@ -73,3 +73,36 @@ input[type='submit']:active{
     }
   
   }
+
+.statusMessage {
+    padding: 12px 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.statusMessage.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.statusMessage.error {
+    background-color: #f44336;
+    color: white;
+}
+
+.statusMessage.info {
+    background-color: var(--btn-color);
+    color: var(--btn-text-color);
+}
+
+@media (width >= 800px) {
+    .statusMessage {
+        max-width: 600px;
+        font-size: 18px;
+    }
+}
